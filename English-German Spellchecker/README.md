@@ -24,6 +24,10 @@ output:
 
 ```
 <br/>
+
+Here are the most misspelled words in English, along with their respective misspell count and the possible terms for replacement.
+
+<br/>
 <br/>
 
 
@@ -42,6 +46,10 @@ output:
  ('vllt', 146, [])]
 
 ```
+<br/>
+
+Here are the most misspelled words in English, along with their respective misspell count and the possible terms for replacement.
+
 <br/>
 <br/>
 
@@ -124,7 +132,7 @@ To classify between languages, the NLTK stop word list and character lists were 
 
 ## The Data
 
-The data was given from twitter. It was collected and distributed via the University of Stuttgart.
+The data was given from twitter. It was collected and distributed via the University of Stuttgart. German and English dictionaries were also contributed from University of Stuttgart files.
 <br/>
 <br/>
 <br/>
