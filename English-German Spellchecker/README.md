@@ -121,18 +121,49 @@ To classify between languages, the NLTK stop word list and character lists were 
 <br/>
 
 ## Misspells
+<br>
+Once terms were normalized using a lemmatizer, the misspellings were ran against lexicons within each respective langauges. In the prelimiary run, there were many acronyms and text speech being assessed as misspelled terms. Many of these were addeed to a separete dictionary. In addition, contractions were replaced in not include them in the results as they are acceptable. However, the choice to allow for much of the accepted internet acronym were removed. Adding them to the acceptable lexicons was also probable, as that would have caught the unintentional misspellings as opposed to intentional use of non-dictionary standard terms. 
+
+As a second measure for tweets, especially ones in German, misspelled words were also run against the opposite language lexicons to caputre terms that might have been intentially used but not specially a part of that language. This may have contributed to some missed corrections. It is one of the problems with a raw text.
 
 <br/>
 <br/>
 
 ## Spelling Corrections
+<br/>
+To identify which terms were most likely to replace the misspelled words, an edited distance (Damerau-Levenstein) algorithm was implemented with a limit of a distance of 1. In this algorythm, All possible combinations within one l measure of distance from subtraction, addition, deletion, and substitution were compiled into a dictionary. This dictionary was then run against the lexicons in their respective langauge. This eliminated all non-valid terms. The remaining list is then presented within the results as probable replacements.
+<br/>
 
+```python
+
+chunks = [(term[:i], term[i:])for i in range(len(term) + 1)]
+    for chunk1, chunk2 in chunks:
+        if chunk2:
+            #subtraction
+            possible[chunk1+chunk2[1:]] = 1
+            for char in alphabet:
+                #substitution
+                possible[chunk1+char+chunk2[1:]] = 1
+        if len(chunk2) > 1:
+            #transposition
+            possible[chunk1+chunk2[1]+chunk2[0]+chunk2[2:]] = 1
+        for char in alphabet:
+            #addition
+            possible[chunk1+char+chunk2] = 1
+```
+
+<br/>
+<br/>
+
+## Expansion
+<br/>
+Further extensions of this project could include giving spell corrections weights related to the surrounding context to have more sensible replacements. An additional expansion could be an increasing the potential edited distance if a potential solution could not be found, similar to a back-off algorithm. Potentially, more lexicon sources may also be usefull in refining both language classification and spelling corrections.
 <br/>
 <br/>
 
 ## The Data
 
-The data was given from twitter. It was collected and distributed via the University of Stuttgart. German and English dictionaries were also contributed from University of Stuttgart files.
+The data was given from twitter. It was collected and distributed via the University of Stuttgart. German and English lexicons were also contributed from University of Stuttgart files.
 <br/>
 <br/>
 <br/>
