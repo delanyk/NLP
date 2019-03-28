@@ -67,7 +67,8 @@ pip install nltk
 <br/>
 
 ## Cleaning the data
-
+<br/>
+<br/>
 Raw data from tweets in two different langauges had a lot to filter. Websites, hashtags, numbers, punctuation, and @ tags were removed from the text. These replacements were done consectively rather than a single regular experession to avoid group overlapping and for simplicity.
 
 <br/>
@@ -87,7 +88,8 @@ Raw data from tweets in two different langauges had a lot to filter. Websites, h
 <br/>
 
 ## Running the Code
-
+<br/>
+<br/>
 This can be run directly in the notebook.
 However you may require jupyter-notebook as well.
 
@@ -95,10 +97,12 @@ However you may require jupyter-notebook as well.
 ```bash
 sudo apt-get install jupyter-notebook
 ```
-
+<br/>
+<br/>
 
 ## The processing
-
+<br/>
+<br/>
 The data was tokenized and normalized using NLTK libraries. Filtering and cleaning of the data was done through regular expressions, and string libraries.
 
 ```python
@@ -113,7 +117,8 @@ from nltk.stem import WordNetLemmatizer as wnl
 <br/>
 
 ## Text classification
-
+<br/>
+<br/>
 To classify between languages, the NLTK stop word list and character lists were used to intitally distinguish between them. For further refinement, dictionaries were generated of terms that occured most frequently in the previously classified texts. These were run again against to more accurately label each tweet. As a fall back if the tally for words occuring in either language could not determin which language the tweet was in, the stop word list and character screening was used.
 
 
@@ -121,9 +126,11 @@ To classify between languages, the NLTK stop word list and character lists were 
 <br/>
 
 ## Misspells
-<br>
+<br/>
+<br/>
 Once terms were normalized using a lemmatizer, the misspellings were ran against lexicons within each respective langauges. In the prelimiary run, there were many acronyms and text speech being assessed as misspelled terms. Many of these were addeed to a separete dictionary. In addition, contractions were replaced in not include them in the results as they are acceptable. However, the choice to allow for much of the accepted internet acronym were removed. Adding them to the acceptable lexicons was also probable, as that would have caught the unintentional misspellings as opposed to intentional use of non-dictionary standard terms. 
-
+<br/>
+<br/>
 As a second measure for tweets, especially ones in German, misspelled words were also run against the opposite language lexicons to caputre terms that might have been intentially used but not specially a part of that language. This may have contributed to some missed corrections. It is one of the problems with a raw text.
 
 <br/>
@@ -131,7 +138,9 @@ As a second measure for tweets, especially ones in German, misspelled words were
 
 ## Spelling Corrections
 <br/>
+<br/>
 To identify which terms were most likely to replace the misspelled words, an edited distance (Damerau-Levenstein) algorithm was implemented with a limit of a distance of 1. In this algorythm, All possible combinations within one l measure of distance from subtraction, addition, deletion, and substitution were compiled into a dictionary. This dictionary was then run against the lexicons in their respective langauge. This eliminated all non-valid terms. The remaining list is then presented within the results as probable replacements.
+<br/>
 <br/>
 
 ```python
@@ -156,6 +165,7 @@ chunks = [(term[:i], term[i:])for i in range(len(term) + 1)]
 <br/>
 
 ## Expansion
+<br/>
 <br/>
 Further extensions of this project could include giving spell corrections weights related to the surrounding context to have more sensible replacements. An additional expansion could be an increasing the potential edited distance if a potential solution could not be found, similar to a back-off algorithm. Potentially, more lexicon sources may also be usefull in refining both language classification and spelling corrections.
 <br/>
