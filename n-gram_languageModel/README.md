@@ -1,6 +1,6 @@
 # N-gram Language Model Project
 
-This project is a n-gram language model that accepts a loaded text and generate new texts based on the learned texts. Text can be generated on screen or be written to a text. After texts are generated or new texts as desired, their perplexity can be measured against the model. In addition, the model supports the looking under the hood and viewing what the underlying probabilities that form the langauge generating method.
+This project is a n-gram language model that accepts a loaded text and generate new texts based on the learned texts. Text can be generated on screen or be written to a text. After texts are generated or new texts as desired, their perplexity can be measured against the model. In addition, the model supports the looking under the hood and viewing what the underlying probabilities that form the language generating method.
 
 <br/>
 <br/>
